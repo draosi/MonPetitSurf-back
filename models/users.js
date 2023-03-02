@@ -11,4 +11,4 @@ const usersSchema = new Schema({
   level: { type: Number, min: 1, max: 4, required: true },
 });
 
-model.exports = mongoose.model("Users", usersSchema);
+module.exports = mongoose.model("Users", usersSchema);

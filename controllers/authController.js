@@ -1,6 +1,6 @@
 const Users = require("../models/users");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   try {
@@ -32,7 +32,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     // Check if the email provided by the user matches an email in our database
-    const user = Users.findOne({ email: req.body.email });
+    const user = await Users.findOne({ email: req.body.email });
     if (!user) return res.status(400).send("Email not found, please register");
 
     // Compare if the password provided by the user matches the one we have in our database - compare req.body.password & user.password
@@ -48,4 +48,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = {register, login}
+module.exports = { register, login };

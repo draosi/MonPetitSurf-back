@@ -20,7 +20,7 @@ const getSpotById = async (req, res) => {
 
 const postSpot = async (req, res) => {
   try {
-    const newSpot = Spots.create(req.body);
+    const newSpot = await Spots.create(req.body);
     res.status(201).json(newSpot);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -29,7 +29,7 @@ const postSpot = async (req, res) => {
 
 const putSpot = async (req, res) => {
   try {
-    const updateSpot = Spots.findOneAndUpdate(
+    const updateSpot = await Spots.findOneAndUpdate(
       { _id: req.params.spotId },
       { $set: req.body },
       { new: true }
@@ -42,11 +42,11 @@ const putSpot = async (req, res) => {
 
 const deleteSpot = async (req, res) => {
   try {
-    const deleteOneSpot = Spots.deleteOne({ _id: req.params.spotId });
+    const deleteOneSpot = await Spots.deleteOne({ _id: req.params.spotId });
     res.status(200).json(deleteOneSpot);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 
-modules.export = { getAllSpots, getSpotById, postSpot, putSpot, deleteSpot };
+module.exports = { getAllSpots, getSpotById, postSpot, putSpot, deleteSpot };

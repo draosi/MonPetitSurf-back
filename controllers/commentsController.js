@@ -20,7 +20,7 @@ const getCommentById = async (req, res) => {
 
 const postComment = async (req, res) => {
   try {
-    const newComment = Comments.create(req.body);
+    const newComment = await Comments.create(req.body);
     res.status(201).json(newComment);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -29,7 +29,7 @@ const postComment = async (req, res) => {
 
 const putComment = async (req, res) => {
   try {
-    const updateComment = Comments.findOneAndUpdate(
+    const updateComment = await Comments.findOneAndUpdate(
       { _id: req.params.commentId },
       { $set: req.body },
       { new: true }
@@ -42,7 +42,7 @@ const putComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
   try {
-    const deleteOneComment = Comments.deleteOne({ _id: req.params.commentId });
+    const deleteOneComment = await Comments.deleteOne({ _id: req.params.commentId });
     res.status(200).json(deleteOneComment);
   } catch (err) {
     res.status(500).json({ error: err.message });

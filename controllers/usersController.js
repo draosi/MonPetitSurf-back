@@ -20,7 +20,7 @@ const getUserById = async (req, res) => {
 
 const postUser = async (req, res) => {
   try {
-    const newUser = Users.create(req.body);
+    const newUser = await Users.create(req.body);
     res.status(201).json(newUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -29,20 +29,20 @@ const postUser = async (req, res) => {
 
 const putUser = async (req, res) => {
   try {
-    const updateUser = Users.findOneAndUpdate(
+    const updateUser = await Users.findOneAndUpdate(
       { _id: req.params.userId },
       { $set: req.body },
       { new: true }
     );
     res.status(200).json(updateUser);
   } catch (err) {
-    res.status(500).json({ erroe: err.message });
+    res.status(500).json({ error: err.message });
   }
 };
 
 const deleteUser = async (req, res) => {
   try {
-    const deleteOneUser = Users.deleteOne({ _id: req.params.userId });
+    const deleteOneUser = await Users.deleteOne({ _id: req.params.userId });
     res.status(200).json(deleteOneUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
