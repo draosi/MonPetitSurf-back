@@ -11,6 +11,10 @@ app.use(
   })
 );
 
+// Link the back-end and the front-end
+const cors = require('cors')
+app.use(cors())
+
 // Import routers
 const usersRouter = require('./routes/usersRouter')
 const spotsRouter = require('./routes/spotsRouter')
