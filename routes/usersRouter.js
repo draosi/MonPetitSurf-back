@@ -4,9 +4,9 @@ const {
   getUserById,
   postUser,
   putUser,
-  deleteUser
+  deleteUser,
 } = require("../controllers/usersController");
-const verify = require("../middlewares/verify");
+const { verify } = require("../middlewares/verify");
 
 usersRouter.route("/users", verify).get(getAllUsers).post(postUser);
 usersRouter
