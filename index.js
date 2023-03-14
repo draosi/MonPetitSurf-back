@@ -18,7 +18,7 @@ app.use(cors())
 // Import routers
 const usersRouter = require('./routes/usersRouter')
 const spotsRouter = require('./routes/spotsRouter')
-const commentsRouter = require('./routes/spotsRouter')
+const commentsRouter = require('./routes/commentsRouter')
 const authRouter = require('./routes/authRouter')
 
 // Routes
