@@ -8,7 +8,7 @@ const usersSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
   role: { type: String, default: "user" },
-  level: { type: Number, min: 1, max: 4, required: true },
+  level: { type: Number, default: 1 },
 });
 
 module.exports = mongoose.model("Users", usersSchema);
